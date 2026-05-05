@@ -101,3 +101,77 @@ guess = player_guess(shuffled_list)
 check_guess(shuffled_list, guess)
 
 
+
+
+# *args and **kwargs
+# *args allows you to pass a variable number of non-keyword arguments to a function.
+def myfunc(*args):#using args is a convention, you can use any name you want, but it is recommended to use args for readability.
+  return sum(args) * 0.05
+print(myfunc(40, 60, 100))
+
+# **kwargs allows you to pass a variable number of keyword arguments to a function.
+def myfunc(**kwargs):
+  if 'fruit' in kwargs:
+    print(f"My favorite fruit is {kwargs['fruit']}")
+  else:
+    print("I don't like fruit")
+
+myfunc(fruit='apple')
+myfunc()
+
+
+# args return a tuple, while kwargs return a dictionary.
+def myfunc(*args, **kwargs):
+  print(args)
+  print(kwargs)
+
+myfunc(1, 2, 3, name='John', age=30)
+
+
+# Function practice problems
+
+'''
+write a function that returns lesser of two even numbers if both numbers are even, but returns greater if one or both numbers are odd.
+'''
+def lesser_of_two_evens(a, b):
+  if a % 2 == 0 and b % 2 == 0:
+    return min(a, b)
+  else:
+    return max(a, b)
+  
+
+'''
+write a function that takes in a two word string and returns True if both words begin with the same letter.
+'''
+def animal_crackers(text):
+  wordlist = text.upper().split()
+  print(wordlist)
+  return wordlist[0][0] == wordlist[1][0]
+
+animal_crackers('Levelheaded Llama')
+
+
+'''
+write a function that capitalizes the first and fourth letters of a name.
+'''
+
+def old_macdonald(name):
+  if len(name) < 4:
+    return "Name must be at least 4 letters long"
+  else:
+    first_half = name[:3]
+    second_half = name[3:]
+    return first_half.capitalize() + second_half.capitalize()
+print(old_macdonald('macdonald'))
+
+
+
+'''
+given a sentence, return a sentence with the words reversed. Like yoda (star wars reference), but the order of the words should be reversed.
+'''
+def master_yoda(text):
+  wordlist = text.split()
+  reversed_wordlist = wordlist[::-1]
+  return " ".join(reversed_wordlist)
+
+print(master_yoda('we are strong'))
