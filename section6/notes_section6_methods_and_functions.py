@@ -175,3 +175,72 @@ def master_yoda(text):
   return " ".join(reversed_wordlist)
 
 print(master_yoda('we are strong'))
+
+
+
+# map, filter, lambda
+# map is a built-in function that takes a function and an iterable and returns a new iterable with the function applied to each element of the iterable.
+def square(num):
+  return num ** 2
+my_nums = [1, 2, 3, 4, 5]
+print(list(map(square, my_nums))) # this will return a map object, which is an iterator
+# notice square does not have parentheses because we are passing the function itself, not the result of the function.
+
+# filter is a built-in function that takes a function and an iterable and returns a new iterable with only the elements of the iterable for which the function returns True.
+def check_even(num):
+  return num % 2 == 0
+print(list(filter(check_even, my_nums))) # this will return a filter object, which is an iterator
+
+# lambda is a way to create anonymous functions, which are functions that are not bound to a name. They are often used in conjunction with map and filter.
+print(list(map(lambda num: num ** 2, my_nums))) # this will return a map object, which is an iterator
+print(list(filter(lambda num: num % 2 == 0, my_nums))) # this will return a filter object, which is an iterator
+
+# local vs global scope
+# variables that are defined inside a function are called local variables, and they are only accessible within that function. Variables that are defined outside of a function are called global variables, and they are accessible throughout the entire program.
+x=25
+def myfunc():
+  x=50
+  return x
+print(x) # prints 25
+print(myfunc()) # prints 50
+
+# LEGB rule
+# Local -> Enclosing -> Global -> Built-in
+# when you reference a variable, Python looks for it in the following order:
+# 1. Local scope: the current function you are in
+# 2. Enclosing scope: any enclosing functions (if you are in a nested function)
+# 3. Global scope: the top-level of the script or module
+# 4. Built-in scope: the built-in functions and variables that are always available in Python
+
+name = "This is a global variable"
+def greet():
+  # name = "This is an Enclosing variable"
+  def hello():
+    # name = "This is a Local variable"
+    print("Hello " + name)
+  hello()
+
+greet()
+
+# local reassignment of global variable
+x = 50
+def func(x):
+  print(f"x is {x}")
+  x = 200
+  print(f"I just locally changed x to {x}")
+
+func(x)
+print(f"x is still {x}")
+
+def func():
+  global x
+  print(f"x is {x}")
+  x = 200
+  print(f"I just globally changed x to {x}")
+
+func()
+print(f"x is now {x}")
+
+
+
+
